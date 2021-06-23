@@ -85,7 +85,7 @@
     "no-undef-init": 2,
     "no-undefined": 2,
 
-    "no-console": "error",
+    "no-console": "warn",
 
     "indent": ["error", 2],
     "brace-style": 1,

@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.root > * {
+  margin: 8px 0;
+}

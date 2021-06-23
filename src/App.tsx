@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { WorkPage } from 'pages/WorkPage';
+
 function App() {
-  return <div>init</div>;
+  return <WorkPage />;
 }
 
 export default App;

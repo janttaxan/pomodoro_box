@@ -1,0 +1,22 @@
+.root {
+  display: grid;
+  grid-column-gap: 0;
+  grid-row-gap: 100px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'header'
+    'content';
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: content;
+
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
