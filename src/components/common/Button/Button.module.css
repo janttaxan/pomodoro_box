@@ -11,9 +11,11 @@
   transition:
     color var(--transition),
     background-color var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
+.root:active,
 .root:focus {
   box-shadow: var(--focus);
 }

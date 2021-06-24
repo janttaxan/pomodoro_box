@@ -1,0 +1,18 @@
+.root {
+  display: none;
+  background-color: rgb(var(--white));
+  border: 1px solid var(--grayC4);
+  z-index: -1;
+}
+
+.opened {
+  display: block;
+  min-width: 164px;
+
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 10;
+}

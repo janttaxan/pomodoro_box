@@ -1,1 +1,111 @@
-.root {}
+.root {
+  display: flex;
+  font-weight: 300;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid var(--grayE4);
+  border-bottom: 1px solid var(--grayE4);
+}
+
+.task {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-right: 16px;
+}
+
+.pomodoroCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  height: 25px;
+  min-width: 25px;
+  padding: 0 6px;
+  border: 1px solid var(--grayC4);
+  border-radius: 16px;
+}
+
+.title {
+  width: 100%;
+  padding: 4px 56px 4px 4px;
+  border: 1px solid transparent;
+  outline: none;
+  background-color: var(--grayF4);
+  transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.title:hover {
+  background-color: var(--grayE4);
+}
+
+.title:focus {
+  box-shadow: var(--focus);
+}
+
+.title[disabled] {
+  background-color: transparent;
+  color: rgb(var(--black));
+}
+
+.actions {
+  position: relative;
+}
+
+.saveBtn,
+.actionsBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 40px;
+  border: none;
+  outline: none;
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.saveBtn {
+  position: absolute;
+  right: 0;
+  background-color: rgb(var(--accent));
+  height: 100%;
+  z-index: 1;
+}
+
+.saveBtn svg path {
+  fill: rgb(var(--white));
+}
+
+.actionsBtn {
+  flex: 0 0 auto;
+  height: 34px;
+  background-color: transparent;
+}
+
+.saveBtn:hover {
+  background-color: rgb(var(--accent-hover));
+}
+
+.actionsBtn:hover {
+  background-color: var(--grayF4);
+}
+
+.saveBtn:active,
+.saveBtn:focus,
+.actionsBtn:focus {
+  box-shadow: var(--focus);
+}
+
+.saveBtn:active {
+  background-color: rgba(var(--accent-hover), 0.8);
+}
+
+.actionsBtn:active {
+  background-color: var(--grayE4);
+}

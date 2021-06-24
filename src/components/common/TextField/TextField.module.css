@@ -1,0 +1,30 @@
+.root {
+  display: block;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid transparent;
+  outline: none;
+  padding: 15px;
+  background-color: var(--grayF4);
+  transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.field.error {
+  border-color: rgb(var(--error));
+}
+
+.field:hover {
+  background-color: var(--grayE4);
+}
+
+.field:focus {
+  box-shadow: var(--focus);
+}
+
+.errorValue {
+  font-size: 14px;
+  line-height: 18px;
+  color: rgb(var(--error));
+}

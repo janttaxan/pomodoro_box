@@ -4,7 +4,7 @@ import React, { MouseEvent } from 'react';
 import classNames from 'classnames';
 
 import { Logo } from 'components/Layout/Header/Logo/Logo';
-import { IconEqualizer } from 'components/common/Icons/IconEqualizer';
+import { IconEqualizer } from 'components/common/Icons';
 
 interface HeaderProps {
   className?: string;
