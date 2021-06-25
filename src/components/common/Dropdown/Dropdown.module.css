@@ -10,9 +10,8 @@
   min-width: 164px;
 
   position: absolute;
-  top: 52px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 40px;
+  right: 0;
 
   z-index: 10;
 }

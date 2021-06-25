@@ -87,7 +87,7 @@
 
     "no-console": "warn",
 
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "brace-style": 1,
     "camelcase": 0,
     "comma-spacing": [1, {"before": false, "after": true}],

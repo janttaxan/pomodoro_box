@@ -15,6 +15,7 @@
   --grayF4: #F4F4F4;
 
   --focus: 0 0 0 0.1em rgba(2, 116, 219, 0.8);
+  --focus-err: 0 0 0 0.1em rgba(var(--error), 0.8);
 
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
