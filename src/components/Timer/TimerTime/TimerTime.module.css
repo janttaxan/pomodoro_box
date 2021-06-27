@@ -1,0 +1,123 @@
+.root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.root.noTask     { color: var(--gray99);      }
+.root.default    { color: rgb(var(--black));  }
+.root.work       { color: rgb(var(--brand));  }
+.root.break      { color: rgb(var(--accent)); }
+.root.pauseWork  { color: rgb(var(--black));  }
+.root.pauseBreak { color: rgb(var(--black));  }
+
+.root.noTask .timeSeparate::before,
+.root.noTask .timeSeparate::after {
+  background-color: var(--gray99);
+}
+
+.root.default .timeSeparate::before,
+.root.default .timeSeparate::after {
+  background-color: rgb(var(--black));
+}
+
+.root.work .timeSeparate::before,
+.root.work .timeSeparate::after {
+  background-color:rgb(var(--brand));
+}
+
+.root.break .timeSeparate::before,
+.root.break .timeSeparate::after {
+  background-color: rgb(var(--accent));
+}
+
+.root.pauseWork .timeSeparate::before,
+.root.pauseWork .timeSeparate::after {
+  background-color: rgb(var(--black));
+}
+
+.root.pauseBreak .timeSeparate::before,
+.root.pauseBreak .timeSeparate::after {
+  background-color: rgb(var(--black));
+}
+
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  display: flex;
+
+  font-size: 150px;
+  line-height: 130px;
+  font-weight: 200;
+  width: 100%;
+  user-select: none;
+}
+
+.timeNum {
+  width: 180px;
+  transition: color var(--transition);
+}
+
+.timeNum:first-child {
+  text-align: right;
+}
+
+.timeSeparate {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 24px;
+}
+
+.timeSeparate::before,
+.timeSeparate::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: background-color var(--transition);
+}
+
+.timeSeparate::before {
+  top: 38px;
+}
+
+.timeSeparate::after {
+  bottom: 28px;
+}
+
+.addBtn {
+  position: absolute;
+  right: -68px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+  background-color: var(--grayC4);
+  border-radius: 50%;
+  outline: none;
+  border: none;
+
+  transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.addBtn:hover {
+  background-color: rgb(var(--accent-hover));
+}
+
+.addBtn:active {
+  background-color: rgba(var(--accent-hover), 0.8);
+}
+
+.addBtn:focus {
+  box-shadow: var(--focus);
+}

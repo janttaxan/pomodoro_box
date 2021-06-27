@@ -2,17 +2,16 @@ import styles from './WorkPage.module.css';
 
 import React from 'react';
 
-import { Layout } from 'components/Layout';
 import { Todos } from 'components/Todos';
 import { Info } from 'components/Info';
+import { Timer } from 'components/Timer';
 
 export function WorkPage() {
   return (
-    <Layout>
-      <div className={styles.root}>
-        <Info className={styles.info} />
-        <Todos className={styles.todos} />
-      </div>
-    </Layout>
+    <div className={styles.root}>
+      <Info className={styles.info} />
+      <Todos className={styles.todos} />
+      <Timer className={styles.timer} />
+    </div>
   );
 }

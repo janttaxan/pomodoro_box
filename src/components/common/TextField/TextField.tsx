@@ -3,7 +3,7 @@ import styles from './TextField.module.css';
 import React, { ChangeEvent, forwardRef } from 'react';
 import classNames from 'classnames';
 
-type Size = 'sm' | 'lg'
+type Size = 'sm' | 'lg';
 
 interface TextFieldProps {
   // класс для обертки всего компонента

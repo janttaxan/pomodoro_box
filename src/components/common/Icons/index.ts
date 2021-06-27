@@ -6,3 +6,4 @@ export * from './IconAdd';
 export * from './IconRemove';
 export * from './IconEdit';
 export * from './IconDelete';
+export * from './IconPlus';

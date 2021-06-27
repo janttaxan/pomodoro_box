@@ -1,9 +1,11 @@
 import { RootState } from 'core/entities/store';
 
 export class LocalStorageService {
+  private key = 'state';
+
   public loadState(): Optional<RootState> {
     try {
-      const serializedState = localStorage.getItem('state');
+      const serializedState = localStorage.getItem(this.key);
       if (serializedState === null) {
         return null;
       }
@@ -16,7 +18,15 @@ export class LocalStorageService {
   public saveStore(state: RootState) {
     try {
       const serializedState = JSON.stringify(state);
-      localStorage.setItem('state', serializedState);
+      localStorage.setItem(this.key, serializedState);
+    } catch {
+      // ignore write errors
+    }
+  }
+
+  public resetStore() {
+    try {
+      localStorage.removeItem(this.key);
     } catch {
       // ignore write errors
     }

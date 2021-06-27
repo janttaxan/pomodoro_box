@@ -2,10 +2,11 @@
   display: grid;
   grid-column-gap: 0;
   grid-row-gap: 100px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     'header'
-    'content';
+    'content'
+    '.';
 }
 
 .header {
@@ -14,9 +15,4 @@
 
 .content {
   grid-area: content;
-
-  width: 100%;
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0 40px;
 }

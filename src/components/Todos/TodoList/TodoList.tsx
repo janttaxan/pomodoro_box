@@ -15,14 +15,7 @@ interface TodoListProps {
 }
 
 export function TodoList(props: TodoListProps) {
-  const {
-    todos,
-    onSaveTodoTitle,
-    onAddTodoPomodoro,
-    onRemoveTodoPomodoro,
-    onEditTodo,
-    onDeleteTodo
-  } = props;
+  const { todos, onSaveTodoTitle, onAddTodoPomodoro, onRemoveTodoPomodoro, onEditTodo, onDeleteTodo } = props;
 
   return (
     <div className={styles.root}>
@@ -33,7 +26,7 @@ export function TodoList(props: TodoListProps) {
             key={todo.id}
             id={todo.id}
             index={index}
-            pomodoroCount={todo.pomodoroCount}
+            pomodoroCount={todo.pomodoro.currentCount ? todo.pomodoro.currentCount : 1}
             title={todo.title}
             onSaveTitle={onSaveTodoTitle}
             onAddPomodoro={onAddTodoPomodoro}

@@ -1,15 +1,13 @@
 import styles from './Logo.module.css';
 
-import React, { MouseEvent } from 'react';
+import React from 'react';
+import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+
 import { IconLogo } from 'components/common/Icons';
 
 export const Logo = () => {
-  const handleMouseDown = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-  };
-
   return (
-    <a className={styles.root} href='/' onMouseDown={(event) => handleMouseDown(event)}>
+    <a className={styles.root} href='/' onMouseDown={preventHandleMouseDown}>
       <IconLogo />
       <span className={styles.text}>pomodoro_box</span>
     </a>

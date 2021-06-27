@@ -1,0 +1,7 @@
+.root {
+  display: flex;
+}
+
+.root button:not(:last-child) {
+  margin-right: 24px;
+}

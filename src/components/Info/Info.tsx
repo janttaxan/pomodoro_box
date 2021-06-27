@@ -9,7 +9,7 @@ interface InfoProps {
 
 export function Info({ className }: InfoProps) {
   return (
-    <div className={classNames(styles.root, className)}>
+    <section className={classNames(styles.root, className)}>
       <h2 className={styles.title}>Ура! Теперь можно начать работать:</h2>
       <ul className={styles.list}>
         <li className={styles.item}>Напишите название текущей задачи</li>
@@ -21,6 +21,6 @@ export function Info({ className }: InfoProps) {
           выполнена. Каждые 4&nbsp;&laquo;помидора&raquo; делайте длинный перерыв (15-30&nbsp;минут).
         </li>
       </ul>
-    </div>
+    </section>
   );
 }

@@ -22,10 +22,6 @@
   transition: background-color var(--transition);
 }
 
-.root:first-child::before {
-  animation: bg-color 4s var(--easing) infinite;
-}
-
 .task {
   position: relative;
   display: flex;
@@ -143,16 +139,4 @@
 
 .actionsBtn:active {
   background-color: var(--grayE4);
-}
-
-@keyframes bg-color {
-  0% {
-    background-color: rgba(var(--warning), 0);
-  }
-  50% {
-    background-color: rgba(var(--warning), 0.08);
-  }
-  100% {
-    background-color: rgba(var(--warning), 0);
-  }
 }

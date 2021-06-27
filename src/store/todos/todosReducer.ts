@@ -30,7 +30,10 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
           if (todo.id === action.payload.id) {
             return {
               ...todo,
-              pomodoroCount: todo.pomodoroCount + 1
+              pomodoro: {
+                ...todo.pomodoro,
+                currentCount: todo.pomodoro.currentCount ? todo.pomodoro.currentCount + 1 : todo.pomodoro.currentCount
+              }
             };
           }
           return todo;
@@ -43,7 +46,10 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
           if (todo.id === action.payload.id) {
             return {
               ...todo,
-              pomodoroCount: todo.pomodoroCount - 1
+              pomodoro: {
+                ...todo.pomodoro,
+                currentCount: todo.pomodoro.currentCount ? todo.pomodoro.currentCount - 1 : todo.pomodoro.currentCount
+              }
             };
           }
           return todo;

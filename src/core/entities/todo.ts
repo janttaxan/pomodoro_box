@@ -1,15 +1,17 @@
 export interface Todo {
   id: string;
   title: string;
-  pomodoros?: Array<Pomodoro>;
-  pomodoroCount: number;
+  pomodoro: TodoCounters;
+  break: TodoCounters;
   isDone: boolean;
   date: {
     // элменетны даты храним в "timestump"
     created: number;
-  }
+    complited?: number;
+  };
 }
 
-export interface Pomodoro {
-
+export interface TodoCounters {
+  currentCount: Optional<number>;
+  complitedCount: number;
 }

@@ -14,20 +14,30 @@ export function TodoForm() {
 
   const dispatch = useDispatch();
 
-  const handleInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+  const handleInput = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setInputValue(event.target.value);
 
-    if (errorValue && event.target.value.length > 3) {
-      setErrorValue('');
-    }
-  }, [errorValue]);
+      if (errorValue && event.target.value.length > 3) {
+        setErrorValue('');
+      }
+    },
+    [errorValue]
+  );
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     const todo: Todo = {
       title: inputValue.trim(),
       id: generateRandomString(),
-      pomodoroCount: 1,
+      pomodoro: {
+        currentCount: 1,
+        complitedCount: 0
+      },
+      break: {
+        currentCount: null,
+        complitedCount: 0
+      },
       isDone: false,
       date: {
         created: Date.now()

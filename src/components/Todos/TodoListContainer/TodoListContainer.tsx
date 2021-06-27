@@ -35,11 +35,7 @@ export function TodoListContainer() {
       return;
     }
 
-    const todos = reorder(
-      todosList,
-      result.source.index,
-      result.destination.index
-    );
+    const todos = reorder(todosList, result.source.index, result.destination.index);
 
     dispatch(reorderTodos(todos));
   }
@@ -66,7 +62,7 @@ export function TodoListContainer() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='todoList'>
-        {provided => (
+        {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
             <TodoList
               todos={todosList}

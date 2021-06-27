@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/unbound-method*/
 import styles from './TodoItem.module.css';
 
-import React, { ChangeEvent, FormEvent, MouseEvent, useCallback, useRef, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
+import { Draggable } from 'react-beautiful-dnd';
+import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+
 import { IconDots, IconSave } from 'components/common/Icons';
 import { Dropdown, useDropdown } from 'components/common/Dropdown';
 import { TodoActions } from 'components/Todos/TodoList/TodoItem/TodoActions';
 import { TextField } from 'components/common/TextField';
-import { Draggable } from 'react-beautiful-dnd';
 
 export interface TodoItemProps {
   className?: string;
@@ -52,10 +54,6 @@ export function TodoItem(props: TodoItemProps) {
     }, 0);
   };
 
-  const handleMouseDown = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
   const handleAddPomodoro = useCallback(() => {
     onAddPomodoro(id);
   }, []);
@@ -78,13 +76,16 @@ export function TodoItem(props: TodoItemProps) {
     onClose();
   }, []);
 
-  const handleChangeTitle = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    if (errorValue && event.target.value.length > 3) {
-      setErrorValue('');
-    }
+  const handleChangeTitle = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (errorValue && event.target.value.length > 3) {
+        setErrorValue('');
+      }
 
-    setTitleValue(event.target.value);
-  }, [errorValue]);
+      setTitleValue(event.target.value);
+    },
+    [errorValue]
+  );
 
   const handleSaveTitle = (event: FormEvent) => {
     event.preventDefault();
@@ -99,7 +100,7 @@ export function TodoItem(props: TodoItemProps) {
 
   return (
     <Draggable draggableId={id} index={index}>
-      {provided => (
+      {(provided) => (
         <li
           className={classNames(styles.root, className, { [styles.itemEdit]: isEdit })}
           ref={provided.innerRef}
@@ -110,7 +111,7 @@ export function TodoItem(props: TodoItemProps) {
             <button
               className={styles.pomodoroCount}
               onClick={handleAddPomodoro}
-              onMouseDown={handleMouseDown}
+              onMouseDown={preventHandleMouseDown}
               type='button'
             >
               {pomodoroCount}
@@ -126,7 +127,7 @@ export function TodoItem(props: TodoItemProps) {
               ref={inputRef}
             />
             {isEdit && (
-              <button className={styles.saveBtn} onMouseDown={handleMouseDown}>
+              <button className={styles.saveBtn} onMouseDown={preventHandleMouseDown}>
                 <IconSave />
               </button>
             )}

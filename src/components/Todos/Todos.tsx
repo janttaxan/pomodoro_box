@@ -17,10 +17,10 @@ interface TodosProps {
 export function Todos({ className }: TodosProps) {
   const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.list);
   return (
-    <div className={classNames(styles.root, className)}>
+    <section className={classNames(styles.root, className)}>
       <TodoForm />
       <TodoListContainer />
       {todosList.length > 0 && <span className={styles.totalTime}>25 мин</span>}
-    </div>
+    </section>
   );
 }

@@ -1,0 +1,19 @@
+.root {
+
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--grayF4);
+  padding: 100px;
+}
+
+.info {
+  margin: 16px 0 32px;
+}
+
+.infoProp {
+  color: var(--gray99);
+}
