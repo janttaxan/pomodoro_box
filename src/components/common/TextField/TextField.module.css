@@ -6,20 +6,40 @@
   width: 100%;
   border: 1px solid transparent;
   outline: none;
-  padding: 15px;
   background-color: var(--grayF4);
   transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.field::placeholder {
+  color: var(--gray99);
+}
+
+.field.sm {
+  padding: 4px;
+}
+
+.field.lg {
+  padding: 15px;
 }
 
 .field.error {
   border-color: rgb(var(--error));
 }
 
-.field:hover {
+.field.disabled {
+  background-color: transparent;
+  border-color: var(--grayE4);
+}
+
+.field.disabled::placeholder {
+  color: var(--grayC4);
+}
+
+.field:not(.disabled):hover {
   background-color: var(--grayE4);
 }
 
-.field:focus {
+.field:not(.disabled):focus {
   box-shadow: var(--focus);
 }
 

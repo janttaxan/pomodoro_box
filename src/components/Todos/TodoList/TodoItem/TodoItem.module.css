@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   display: flex;
   font-weight: 300;
   justify-content: space-between;
@@ -7,48 +8,79 @@
   padding: 10px 0;
   border-top: 1px solid var(--grayE4);
   border-bottom: 1px solid var(--grayE4);
+  background-color: rgb(var(--white));
+}
+
+.root:not(.itemEdit)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition: background-color var(--transition);
+}
+
+.root:first-child::before {
+  animation: bg-color 4s var(--easing) infinite;
 }
 
 .task {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  /*margin-right: 16px;*/
+}
+
+.task:not(.taskEdit)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%, #FFFFFF 100%);
 }
 
 .pomodoroCount {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 5px;
+  margin: 6px 5px 0 0;
   height: 25px;
   min-width: 25px;
   padding: 0 6px;
   border: 1px solid var(--grayC4);
   border-radius: 16px;
+  outline: none;
+  background-color: transparent;
+  z-index: 5;
+  transition: color var(--transition),
+  background-color var(--transition),
+  box-shadow var(--transition);
+}
+
+.pomodoroCount:hover {
+  background-color: var(--grayF4);
+}
+
+.pomodoroCount:active {
+  background-color: var(--grayE4);
 }
 
 .title {
   width: 100%;
-  padding: 4px 56px 4px 4px;
-  border: 1px solid transparent;
-  outline: none;
-  background-color: var(--grayF4);
-  transition: background-color var(--transition), box-shadow var(--transition);
 }
 
-.title:hover {
-  background-color: var(--grayE4);
-}
-
-.title:focus {
-  box-shadow: var(--focus);
-}
-
-.title[disabled] {
+.input:not(.inputEdit) {
   background-color: transparent;
-  color: rgb(var(--black));
+  border-color: transparent;
+}
+
+.input.inputEdit {
+  padding-right: 56px;
 }
 
 .actions {
@@ -64,17 +96,17 @@
   width: 40px;
   border: none;
   outline: none;
-  transition:
-    color var(--transition),
-    background-color var(--transition),
-    box-shadow var(--transition);
+  transition: color var(--transition),
+  background-color var(--transition),
+  box-shadow var(--transition);
 }
 
 .saveBtn {
   position: absolute;
-  right: 0;
+  top: 1px;
+  right: 1px;
   background-color: rgb(var(--accent));
-  height: 100%;
+  height: 32px;
   z-index: 1;
 }
 
@@ -83,9 +115,11 @@
 }
 
 .actionsBtn {
+  position: relative;
   flex: 0 0 auto;
   height: 34px;
   background-color: transparent;
+  z-index: 5;
 }
 
 .saveBtn:hover {
@@ -96,6 +130,7 @@
   background-color: var(--grayF4);
 }
 
+.pomodoroCount:focus,
 .saveBtn:active,
 .saveBtn:focus,
 .actionsBtn:focus {
@@ -108,4 +143,16 @@
 
 .actionsBtn:active {
   background-color: var(--grayE4);
+}
+
+@keyframes bg-color {
+  0% {
+    background-color: rgba(var(--warning), 0);
+  }
+  50% {
+    background-color: rgba(var(--warning), 0.08);
+  }
+  100% {
+    background-color: rgba(var(--warning), 0);
+  }
 }

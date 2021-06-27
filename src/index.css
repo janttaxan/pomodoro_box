@@ -17,7 +17,8 @@
   --focus: 0 0 0 0.1em rgba(2, 116, 219, 0.8);
   --focus-err: 0 0 0 0.1em rgba(var(--error), 0.8);
 
-  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 250ms var(--easing) 0ms;
 }
 
 *, *::before, *::after {
@@ -51,6 +52,14 @@ button {
   color: inherit;
   margin: 0;
   padding: 0;
+}
+
+input[disabled] {
+  -webkit-text-fill-color: rgb(var(--black));
+}
+
+form, li {
+  outline: none;
 }
 
 a {

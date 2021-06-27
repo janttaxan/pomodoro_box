@@ -1,1 +1,7 @@
 .root {}
+
+.totalTime {
+  display: inline-block;
+  color: var(--gray99);
+  margin: 12px 0 0;
+}
