@@ -6,7 +6,7 @@ import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
 
 import { Logo } from 'components/Layout/Header/Logo/Logo';
 import { IconEqualizer } from 'components/common/Icons';
-import { LocalStorageService } from 'core/services/localStorage';
+import { LocalStorageService } from 'core/services/LocalStorageService';
 
 interface HeaderProps {
   className?: string;

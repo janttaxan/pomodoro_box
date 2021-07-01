@@ -59,7 +59,7 @@
 }
 
 .timeNum {
-  width: 180px;
+  width: 250px;
   transition: color var(--transition);
 }
 
@@ -94,7 +94,7 @@
 
 .addBtn {
   position: absolute;
-  right: -68px;
+  right: 0;
 
   display: flex;
   justify-content: center;

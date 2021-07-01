@@ -3,6 +3,10 @@ import { RootState } from 'core/entities/store';
 export const initialState: RootState = {
   timer: {
     status: 'noTask',
+    daylyCounters: {
+      pomodoro: 0,
+      break: 0
+    },
     todo: {
       id: null,
       time: {
@@ -12,9 +16,9 @@ export const initialState: RootState = {
     }
   },
   settings: {
-    pomodoroTime: 25,
-    shortBreakTime: 5,
-    longBreakTime: 15,
+    pomodoroTime: 1,
+    shortBreakTime: 1,
+    longBreakTime: 2,
     autostartPomodoro: false,
     autostartBreak: true
   },

@@ -1,24 +1,32 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+
 import styles from './Timer.module.css';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { RootState, SettingsState, TimerState, TodosState } from 'core/entities/store';
 import { Todo } from 'core/entities/todo';
 import { useDispatch, useSelector } from 'react-redux';
+import { TimerService } from 'core/services/TimerService';
+
 import { updateCurrentTodo } from 'store/timer/actions/updateCurrentTodo';
 
 import { setStatus } from 'store/timer/actions/setStatus';
-import { startTimerAsync } from 'store/timer/actions/startTimerAsync';
 import { initTimerTime } from 'store/timer/actions/initTimerTime';
 
 import { TimerHeader } from 'components/Timer/TimerHeader';
 import { TimerTime } from 'components/Timer/TimerTime';
 import { TimerControls } from 'components/Timer/TimerControls';
+import { setMinutes } from 'store/timer/actions/setMinutes';
+import { TimerInfo } from 'components/Timer/TimerInfo';
 
 interface TimerProps {
   className?: string;
 }
+
+const timerService = new TimerService();
 
 export function Timer({ className }: TimerProps) {
   const [todo, setTodo] = useState<Optional<Todo>>(null);
@@ -53,50 +61,68 @@ export function Timer({ className }: TimerProps) {
 
   // следим за наличием задач
   useEffect(() => {
+    const setCurrentTodo = (reset = false) => {
+      if (reset) {
+        dispatch(updateCurrentTodo(null));
+        setTodo(null);
+      } else {
+        dispatch(updateCurrentTodo(todos.list[0].id));
+        setTodo(todos.list[0]);
+      }
+    };
+
     // если добавлена первая задача
     if (todos.list.length && timer.status === 'noTask') {
       dispatch(setStatus('default'));
       dispatch(initTimerTime(settings.pomodoroTime, 0));
-      dispatch(updateCurrentTodo(todos.list[0].id));
-      setTodo(todos.list[0]);
+      setCurrentTodo();
     }
 
     // если удалены все задачи
     if (!todos.list.length) {
       dispatch(setStatus('noTask'));
-      dispatch(updateCurrentTodo(null));
       dispatch(initTimerTime(0, 0));
-      setTodo(null);
+      setCurrentTodo(true);
+    }
+
+    // если задачи есть и поменялся порядок
+    if (todos.list.length) {
+      setCurrentTodo();
     }
   }, [todos, settings]);
 
-  const handleAddMinute = () => {
-    console.log('add minute');
-  };
+  const handleAddMinute = useCallback(() => {
+    dispatch(setMinutes(timer.todo.time.minute + 1));
+  }, [timer.todo.time.minute]);
 
-  const handleStart = () => {
-    dispatch(startTimerAsync());
-  };
+  const handleStart = useCallback(() => {
+    dispatch(timerService.start());
+  }, []);
 
-  const handlePause = () => {
-    console.log('Pause');
-  };
+  const handlePause = useCallback(() => {
+    dispatch(timerService.pause());
+  }, []);
 
-  const handleStop = () => {
-    console.log('Stop');
-  };
+  const handleStop = useCallback(() => {
+    dispatch(timerService.stop());
+  }, []);
 
-  const handleDone = () => {
+  const handleDone = useCallback(() => {
     console.log('Done');
-  };
+  }, []);
 
-  const handleSkip = () => {
+  const handleSkip = useCallback(() => {
     console.log('Skip');
-  };
+  }, []);
 
   return (
     <section className={classNames(styles.root, className)}>
-      <TimerHeader todoTitle={todo?.title} pomodoroCount={1} breakCount={1} status={timer.status} />
+      <TimerHeader
+        todoTitle={todo?.title}
+        pomodoroCount={timer.daylyCounters.pomodoro + 1}
+        breakCount={timer.daylyCounters.break + 1}
+        status={timer.status}
+      />
       <div className={styles.body}>
         <TimerTime
           minute={timer.todo.time.minute}
@@ -104,10 +130,7 @@ export function Timer({ className }: TimerProps) {
           status={timer.status}
           onAddMinute={handleAddMinute}
         />
-        <div className={styles.info}>
-          <span className={styles.infoProp}>Задача &mdash; </span>
-          <span>{todo?.title}</span>
-        </div>
+        <TimerInfo todoTitle={todo?.title} hasTodo={!!todo} />
         <TimerControls
           status={timer.status}
           onStart={handleStart}

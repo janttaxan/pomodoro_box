@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Reducer } from 'redux';
 import { TimerState } from 'core/entities/store';
 import { TimerActions } from 'store/timer/actions';
@@ -10,6 +9,7 @@ import { SET_STATUS } from 'store/timer/actions/setStatus';
 import { INIT_TIMER_TIME } from 'store/timer/actions/initTimerTime';
 import { SET_SECONDS } from 'store/timer/actions/setSeconds';
 import { SET_MINUTES } from 'store/timer/actions/setMinutes';
+import { SET_POMODORO_COUNT } from 'store/timer/actions/setPomodoroCount';
 
 export const timerReducer: Reducer<TimerState, TimerActions> = (state = initialState.timer, action) => {
   switch (action.type) {
@@ -59,6 +59,14 @@ export const timerReducer: Reducer<TimerState, TimerActions> = (state = initialS
             ...state.todo.time,
             minute: action.payload.value
           }
+        }
+      };
+    case SET_POMODORO_COUNT:
+      return {
+        ...state,
+        daylyCounters: {
+          ...state.daylyCounters,
+          pomodoro: action.payload.value
         }
       };
     default:

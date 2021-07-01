@@ -31,12 +31,8 @@ export function TimerTime({ minute, second, status, onAddMinute }: TimerTimeProp
           <div className={styles.timeSeparate} />
           <span className={styles.timeNum}>{formatTimeNumber(second)}</span>
         </div>
-        {status !== 'noTask' && (
-          <button
-            className={styles.addBtn}
-            onClick={onAddMinute}
-            onMouseDown={preventHandleMouseDown}
-          >
+        {(status === 'work' || status === 'pauseWork' || status === 'break' || status === 'pauseBreak') && (
+          <button className={styles.addBtn} onClick={onAddMinute} onMouseDown={preventHandleMouseDown}>
             <IconPlus />
           </button>
         )}

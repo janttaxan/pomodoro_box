@@ -27,6 +27,7 @@ export class LocalStorageService {
   public resetStore() {
     try {
       localStorage.removeItem(this.key);
+      location.reload();
     } catch {
       // ignore write errors
     }

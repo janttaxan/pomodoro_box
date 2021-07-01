@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { rootReducer } from 'store/reducer';
 import { initialState } from 'store/store';
 
-import { LocalStorageService } from 'core/services/localStorage';
+import { LocalStorageService } from 'core/services/LocalStorageService';
 
 import { Layout } from 'components/Layout';
 import { WorkPage } from 'pages/WorkPage';

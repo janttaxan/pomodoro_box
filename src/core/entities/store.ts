@@ -7,8 +7,6 @@ export interface RootState {
   complitedTodos: TodosState;
 }
 
-export type TimerStatus = 'noTask' | 'default' | 'work' | 'break' | 'pauseWork' | 'pauseBreak';
-
 export interface TimerTime {
   minute: number;
   second: number;
@@ -19,8 +17,16 @@ export interface TimerTodo {
   time: TimerTime;
 }
 
+export type TimerStatus = 'noTask' | 'default' | 'work' | 'break' | 'pauseWork' | 'pauseBreak';
+
+export interface TimerCounters {
+  pomodoro: number;
+  break: number;
+}
+
 export interface TimerState {
   status: TimerStatus;
+  daylyCounters: TimerCounters;
   todo: TimerTodo;
 }
 

@@ -1,0 +1,12 @@
+.root {
+  margin: 16px 0 32px;
+}
+
+.infoProp {
+  color: var(--gray99);
+}
+
+.noTodosInfo {
+  color: rgb(var(--accent));
+  font-weight: 600;
+}
