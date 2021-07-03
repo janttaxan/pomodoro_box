@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import { Reducer } from 'redux';
 import { TimerState } from 'core/entities/store';
 import { TimerActions } from 'store/timer/actions';
@@ -10,6 +12,7 @@ import { INIT_TIMER_TIME } from 'store/timer/actions/initTimerTime';
 import { SET_SECONDS } from 'store/timer/actions/setSeconds';
 import { SET_MINUTES } from 'store/timer/actions/setMinutes';
 import { SET_POMODORO_COUNT } from 'store/timer/actions/setPomodoroCount';
+import { SET_BREAK_COUNT } from 'store/timer/actions/setBreakCount';
 
 export const timerReducer: Reducer<TimerState, TimerActions> = (state = initialState.timer, action) => {
   switch (action.type) {
@@ -67,6 +70,14 @@ export const timerReducer: Reducer<TimerState, TimerActions> = (state = initialS
         daylyCounters: {
           ...state.daylyCounters,
           pomodoro: action.payload.value
+        }
+      };
+    case SET_BREAK_COUNT:
+      return {
+        ...state,
+        daylyCounters: {
+          ...state.daylyCounters,
+          break: action.payload.value
         }
       };
     default:

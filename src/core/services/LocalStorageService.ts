@@ -11,6 +11,7 @@ export class LocalStorageService {
       }
       return JSON.parse(serializedState) as RootState;
     } catch (err) {
+      this.resetStore();
       return null;
     }
   }

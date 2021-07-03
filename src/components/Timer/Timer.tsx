@@ -108,11 +108,11 @@ export function Timer({ className }: TimerProps) {
   }, []);
 
   const handleDone = useCallback(() => {
-    console.log('Done');
+    dispatch(timerService.skipWork());
   }, []);
 
-  const handleSkip = useCallback(() => {
-    console.log('Skip');
+  const handleSkipBreak = useCallback(() => {
+    dispatch(timerService.skipBreak());
   }, []);
 
   return (
@@ -137,7 +137,7 @@ export function Timer({ className }: TimerProps) {
           onPause={handlePause}
           onStop={handleStop}
           onDone={handleDone}
-          onSkip={handleSkip}
+          onSkip={handleSkipBreak}
         />
       </div>
     </section>

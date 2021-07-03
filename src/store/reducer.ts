@@ -23,6 +23,7 @@ import { INIT_TIMER_TIME } from 'store/timer/actions/initTimerTime';
 import { SET_SECONDS } from 'store/timer/actions/setSeconds';
 import { SET_MINUTES } from 'store/timer/actions/setMinutes';
 import { SET_POMODORO_COUNT } from 'store/timer/actions/setPomodoroCount';
+import { SET_BREAK_COUNT } from 'store/timer/actions/setBreakCount';
 
 export const rootReducer: Reducer<RootState, Actions> = (state = initialState, action) => {
   switch (action.type) {
@@ -45,6 +46,7 @@ export const rootReducer: Reducer<RootState, Actions> = (state = initialState, a
     case SET_SECONDS:
     case SET_MINUTES:
     case SET_POMODORO_COUNT:
+    case SET_BREAK_COUNT:
       return {
         ...state,
         timer: timerReducer(state.timer, action)

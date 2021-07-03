@@ -1,12 +1,14 @@
 import styles from './TodoForm.module.css';
 
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { generateRandomString } from 'utils/generateRandomString';
+
+import { Todo } from 'core/entities/todo';
+import { addTodo } from 'store/todos/actions/addTodo';
+
 import { Button } from 'components/common/Button';
 import { TextField } from 'components/common/TextField';
-import { useDispatch } from 'react-redux';
-import { addTodo } from 'store/todos/actions/addTodo';
-import { generateRandomString } from 'utils/generateRandomString';
-import { Todo } from 'core/entities/todo';
 
 export function TodoForm() {
   const [inputValue, setInputValue] = useState('');
@@ -30,13 +32,11 @@ export function TodoForm() {
     const todo: Todo = {
       title: inputValue.trim(),
       id: generateRandomString(),
-      pomodoro: {
-        currentCount: 1,
-        complitedCount: 0
-      },
-      break: {
-        currentCount: null,
-        complitedCount: 0
+      counters: {
+        pomodoro: {
+          current: 1,
+          complited: 0
+        }
       },
       isDone: false,
       date: {

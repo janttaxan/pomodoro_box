@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import { Reducer } from 'redux';
 import { TodosState } from 'core/entities/store';
 import { TodosActions } from 'store/todos/actions';
@@ -30,9 +33,12 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
           if (todo.id === action.payload.id) {
             return {
               ...todo,
-              pomodoro: {
-                ...todo.pomodoro,
-                currentCount: todo.pomodoro.currentCount ? todo.pomodoro.currentCount + 1 : todo.pomodoro.currentCount
+              counters: {
+                ...todo.counters,
+                pomodoro: {
+                  ...todo.counters.pomodoro,
+                  current: todo.counters.pomodoro.current + 1
+                }
               }
             };
           }
@@ -46,9 +52,12 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
           if (todo.id === action.payload.id) {
             return {
               ...todo,
-              pomodoro: {
-                ...todo.pomodoro,
-                currentCount: todo.pomodoro.currentCount ? todo.pomodoro.currentCount - 1 : todo.pomodoro.currentCount
+              counters: {
+                ...todo.counters,
+                pomodoro: {
+                  ...todo.counters.pomodoro,
+                  current: todo.counters.pomodoro.current - 1
+                }
               }
             };
           }

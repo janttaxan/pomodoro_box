@@ -4,5 +4,13 @@ import { InitTimerTime } from 'store/timer/actions/initTimerTime';
 import { SetSeconds } from 'store/timer/actions/setSeconds';
 import { SetMinutes } from 'store/timer/actions/setMinutes';
 import { SetPomodoroCount } from 'store/timer/actions/setPomodoroCount';
+import { SetBreakCount } from 'store/timer/actions/setBreakCount';
 
-export type TimerActions = UpdateCurrentTodo | SetStatus | InitTimerTime | SetSeconds | SetMinutes | SetPomodoroCount;
+export type TimerActions =
+  | UpdateCurrentTodo
+  | SetStatus
+  | InitTimerTime
+  | SetSeconds
+  | SetMinutes
+  | SetPomodoroCount
+  | SetBreakCount;

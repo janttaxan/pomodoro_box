@@ -16,9 +16,9 @@ export const initialState: RootState = {
     }
   },
   settings: {
-    pomodoroTime: 1,
-    shortBreakTime: 1,
-    longBreakTime: 2,
+    pomodoroTime: 25,
+    shortBreakTime: 5,
+    longBreakTime: 20,
     autostartPomodoro: false,
     autostartBreak: true
   },

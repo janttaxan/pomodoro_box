@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import styles from './TodoList.module.css';
 
 import React from 'react';
@@ -26,7 +28,7 @@ export function TodoList(props: TodoListProps) {
             key={todo.id}
             id={todo.id}
             index={index}
-            pomodoroCount={todo.pomodoro.currentCount ? todo.pomodoro.currentCount : 1}
+            pomodoroCount={todo.counters.pomodoro.current}
             title={todo.title}
             onSaveTitle={onSaveTodoTitle}
             onAddPomodoro={onAddTodoPomodoro}
