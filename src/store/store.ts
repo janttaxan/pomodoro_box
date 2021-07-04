@@ -16,16 +16,14 @@ export const initialState: RootState = {
     }
   },
   settings: {
-    pomodoroTime: 25,
-    shortBreakTime: 5,
-    longBreakTime: 20,
+    pomodoroTime: 3,
+    shortBreakTime: 2,
+    longBreakTime: 1,
     autostartPomodoro: false,
     autostartBreak: true
   },
   todos: {
-    list: []
-  },
-  complitedTodos: {
-    list: []
+    current: [],
+    completed: []
   }
 };

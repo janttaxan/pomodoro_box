@@ -15,7 +15,7 @@ interface TodosProps {
 }
 
 export function Todos({ className }: TodosProps) {
-  const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.list);
+  const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.current);
   return (
     <section className={classNames(styles.root, className)}>
       <TodoForm />

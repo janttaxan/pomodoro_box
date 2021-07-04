@@ -11,6 +11,10 @@
   background-color: rgb(var(--white));
 }
 
+.root.isDone {
+  background-color: rgb(var(--brand));
+}
+
 .root:not(.itemEdit)::before {
   content: "";
   position: absolute;

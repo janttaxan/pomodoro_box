@@ -4,5 +4,15 @@ import { RemoveTodoPomodoro } from 'store/todos/actions/removeTodoPomodoro';
 import { AddTodo } from 'store/todos/actions/addTodo';
 import { SaveTodoTitle } from 'store/todos/actions/saveTodoTitle';
 import { ReorderTodos } from 'store/todos/actions/reorderTodos';
+import { AddTodoCompletedPomodoro } from 'store/todos/actions/addTodoCompletedPomodoro';
+import { MoveTodoToCompleted } from 'store/todos/actions/moveTodoToCompleted';
 
-export type TodosActions = AddTodo | DeleteTodo | AddTodoPomodoro | RemoveTodoPomodoro | SaveTodoTitle | ReorderTodos;
+export type TodosActions =
+  | AddTodo
+  | DeleteTodo
+  | AddTodoPomodoro
+  | RemoveTodoPomodoro
+  | SaveTodoTitle
+  | ReorderTodos
+  | AddTodoCompletedPomodoro
+  | MoveTodoToCompleted;

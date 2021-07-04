@@ -1,5 +1,7 @@
+// TODO: почистить исключения
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { Reducer } from 'redux';
 import { TodosState } from 'core/entities/store';
@@ -13,23 +15,25 @@ import { REMOVE_TODO_POMODORO } from 'store/todos/actions/removeTodoPomodoro';
 import { ADD_TODO } from 'store/todos/actions/addTodo';
 import { SAVE_TODO_TITLE } from 'store/todos/actions/saveTodoTitle';
 import { REORDER_TODOS } from 'store/todos/actions/reorderTodos';
+import { ADD_TODO_COMPLETED_POMODORO } from 'store/todos/actions/addTodoCompletedPomodoro';
+import { MOVE_TODO_TO_COMPLETED } from 'store/todos/actions/moveTodoToCompleted';
 
 export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialState.todos, action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
         ...state,
-        list: state.list.concat({ ...action.payload })
+        current: state.current.concat({ ...action.payload })
       };
     case DELETE_TODO:
       return {
         ...state,
-        list: state.list.filter((todo) => todo.id !== action.payload.id)
+        current: state.current.filter((todo) => todo.id !== action.payload.id)
       };
     case ADD_TODO_POMODORO:
       return {
         ...state,
-        list: state.list.map((todo) => {
+        current: state.current.map((todo) => {
           if (todo.id === action.payload.id) {
             return {
               ...todo,
@@ -48,7 +52,7 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
     case REMOVE_TODO_POMODORO:
       return {
         ...state,
-        list: state.list.map((todo) => {
+        current: state.current.map((todo) => {
           if (todo.id === action.payload.id) {
             return {
               ...todo,
@@ -64,10 +68,29 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
           return todo;
         })
       };
+    case ADD_TODO_COMPLETED_POMODORO:
+      return {
+        ...state,
+        current: state.current.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return {
+              ...todo,
+              counters: {
+                ...todo.counters,
+                pomodoro: {
+                  ...todo.counters.pomodoro,
+                  complited: todo.counters.pomodoro.current + 1
+                }
+              }
+            };
+          }
+          return todo;
+        })
+      };
     case SAVE_TODO_TITLE:
       return {
         ...state,
-        list: state.list.map((todo) => {
+        current: state.current.map((todo) => {
           if (todo.id === action.payload.id) {
             return {
               ...todo,
@@ -79,11 +102,21 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
           };
         })
       };
+    case MOVE_TODO_TO_COMPLETED:
+      return {
+        ...state,
+        current: state.current.filter((todo) => todo.id !== action.payload.id),
+        completed: state.completed.concat({
+          ...action.payload,
+          isDone: true,
+          date: { ...action.payload.date, complited: Date.now() }
+        })
+      };
     case REORDER_TODOS:
       return {
         ...state,
         // TODO: подумать как сделать без мутации массива
-        list: action.payload
+        current: action.payload
       };
     default:
       return state;

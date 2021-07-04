@@ -4,7 +4,6 @@ export interface RootState {
   timer: TimerState;
   settings: SettingsState;
   todos: TodosState;
-  complitedTodos: TodosState;
 }
 
 export interface TimerTime {
@@ -40,5 +39,6 @@ export interface SettingsState {
 }
 
 export interface TodosState {
-  list: Array<Todo>;
+  current: Array<Todo>;
+  completed: Array<Todo>;
 }

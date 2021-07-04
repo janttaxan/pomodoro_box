@@ -1,3 +1,4 @@
+// TODO: почистить исключения
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
 import styles from './TodoList.module.css';
@@ -30,6 +31,7 @@ export function TodoList(props: TodoListProps) {
             index={index}
             pomodoroCount={todo.counters.pomodoro.current}
             title={todo.title}
+            isDone={todo.isDone}
             onSaveTitle={onSaveTodoTitle}
             onAddPomodoro={onAddTodoPomodoro}
             onRemovePomodoro={onRemoveTodoPomodoro}

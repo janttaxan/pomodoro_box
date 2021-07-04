@@ -1,3 +1,4 @@
+// TODO: почистить исключения
 /* eslint-disable */
 import { Reducer } from 'redux';
 import { RootState } from 'core/entities/store';
@@ -24,6 +25,8 @@ import { SET_SECONDS } from 'store/timer/actions/setSeconds';
 import { SET_MINUTES } from 'store/timer/actions/setMinutes';
 import { SET_POMODORO_COUNT } from 'store/timer/actions/setPomodoroCount';
 import { SET_BREAK_COUNT } from 'store/timer/actions/setBreakCount';
+import { ADD_TODO_COMPLETED_POMODORO } from 'store/todos/actions/addTodoCompletedPomodoro';
+import { MOVE_TODO_TO_COMPLETED } from 'store/todos/actions/moveTodoToCompleted';
 
 export const rootReducer: Reducer<RootState, Actions> = (state = initialState, action) => {
   switch (action.type) {
@@ -32,7 +35,9 @@ export const rootReducer: Reducer<RootState, Actions> = (state = initialState, a
     case DELETE_TODO:
     case ADD_TODO_POMODORO:
     case REMOVE_TODO_POMODORO:
+    case ADD_TODO_COMPLETED_POMODORO:
     case SAVE_TODO_TITLE:
+    case MOVE_TODO_TO_COMPLETED:
     case REORDER_TODOS:
       return {
         ...state,

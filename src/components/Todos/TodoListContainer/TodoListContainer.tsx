@@ -1,3 +1,4 @@
+// TODO: почистить исключения
 /* eslint-disable @typescript-eslint/unbound-method*/
 import React, { useCallback } from 'react';
 
@@ -24,7 +25,7 @@ const reorder = (list: Array<Todo>, startIndex: number, endIndex: number) => {
 export function TodoListContainer() {
   const dispatch = useDispatch();
 
-  const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.list);
+  const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.current);
 
   function onDragEnd(result: DropResult) {
     if (!result.destination) {

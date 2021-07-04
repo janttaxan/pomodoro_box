@@ -1,5 +1,7 @@
+// TODO: почистить исключения
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable consistent-return */
 
 import { MainThunkAction, MainThunkDispatch } from 'core/services/index';
 
@@ -9,6 +11,9 @@ import { setStatus } from 'store/timer/actions/setStatus';
 import { initTimerTime } from 'store/timer/actions/initTimerTime';
 import { setPomodoroCount } from 'store/timer/actions/setPomodoroCount';
 import { setBreakCount } from 'store/timer/actions/setBreakCount';
+import { moveTodoToCompleted } from 'store/todos/actions/moveTodoToCompleted';
+import { removeTodoPomodoro } from 'store/todos/actions/removeTodoPomodoro';
+import { addTodoCompletedPomodoro } from 'store/todos/actions/addTodoCompletedPomodoro';
 
 export class TimerService {
   private intervalTime = 10;
@@ -128,6 +133,21 @@ export class TimerService {
       dispatch(setStatus('pauseBreak'));
     }
   };
+
+  // private completeTodoPomodoro = (): MainThunkAction => (dispatch, getState) => {
+  //   const currentTodo = getState().todos.current.find((todo) => todo.id === getState().timer.todo.id);
+  //
+  //   if (!currentTodo) {
+  //     return null;
+  //   }
+  //
+  //   dispatch(removeTodoPomodoro(currentTodo.id));
+  //   dispatch(addTodoCompletedPomodoro(currentTodo.id));
+  //
+  //   if (currentTodo.counters.pomodoro.current <= 1) {
+  //     dispatch(moveTodoToCompleted(currentTodo));
+  //   }
+  // };
 
   private setNextTimer = (): MainThunkAction => (dispatch, getState) => {
     // если последний таймер был "помидор"

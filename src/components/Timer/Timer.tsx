@@ -1,3 +1,4 @@
+// TODO: почистить исключения
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 
@@ -40,22 +41,22 @@ export function Timer({ className }: TimerProps) {
   // установка статусов и таймера при первом рендере (перезагрузке страницы)
   useEffect(() => {
     // если задачи есть и последний статус был "в работе"
-    if (todos.list.length && timer.status === 'work') {
+    if (todos.current.length && timer.status === 'work') {
       // ставим на паузу работу и выставляем последнее значение таймера
       dispatch(setStatus('pauseWork'));
       dispatch(initTimerTime(timer.todo.time.minute, timer.todo.time.second));
     }
 
     // если задачи есть и последнией статус был "перерыв"
-    if (todos.list.length && timer.status === 'break') {
+    if (todos.current.length && timer.status === 'break') {
       // ставим на паузу перерыв и выставляем последнее значение таймера
       dispatch(setStatus('pauseBreak'));
       dispatch(initTimerTime(timer.todo.time.minute, timer.todo.time.second));
     }
 
     // если задачи есть, и статус не был равен "work" и "break", то статус не меняется
-    if (todos.list.length) {
-      setTodo(todos.list[0]);
+    if (todos.current.length) {
+      setTodo(todos.current[0]);
     }
   }, []);
 
@@ -66,27 +67,27 @@ export function Timer({ className }: TimerProps) {
         dispatch(updateCurrentTodo(null));
         setTodo(null);
       } else {
-        dispatch(updateCurrentTodo(todos.list[0].id));
-        setTodo(todos.list[0]);
+        dispatch(updateCurrentTodo(todos.current[0].id));
+        setTodo(todos.current[0]);
       }
     };
 
     // если добавлена первая задача
-    if (todos.list.length && timer.status === 'noTask') {
+    if (todos.current.length && timer.status === 'noTask') {
       dispatch(setStatus('default'));
       dispatch(initTimerTime(settings.pomodoroTime, 0));
       setCurrentTodo();
     }
 
     // если удалены все задачи
-    if (!todos.list.length) {
+    if (!todos.current.length) {
       dispatch(setStatus('noTask'));
       dispatch(initTimerTime(0, 0));
       setCurrentTodo(true);
     }
 
     // если задачи есть и поменялся порядок
-    if (todos.list.length) {
+    if (todos.current.length) {
       setCurrentTodo();
     }
   }, [todos, settings]);
