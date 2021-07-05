@@ -18,7 +18,6 @@ export interface TodoItemProps {
   index: number;
   pomodoroCount: number;
   title: string;
-  isDone: boolean;
   onSaveTitle: (id: string, newValue: string) => void;
   onAddPomodoro: (id: string) => void;
   onRemovePomodoro: (id: string) => void;
@@ -32,7 +31,6 @@ export function TodoItem(props: TodoItemProps) {
     id,
     index,
     title,
-    isDone,
     onSaveTitle,
     pomodoroCount,
     onAddPomodoro,
@@ -101,23 +99,21 @@ export function TodoItem(props: TodoItemProps) {
     }
   };
 
-  const itemClasses = classNames(styles.root, className, { [styles.itemEdit]: isEdit }, { [styles.isDone]: isDone });
+  const itemClasses = classNames(styles.root, className, { [styles.itemEdit]: isEdit });
 
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
         <li className={itemClasses} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <form className={classNames(styles.task, { [styles.taskEdit]: isEdit })} onSubmit={handleSaveTitle}>
-            {!isDone && (
-              <button
-                className={styles.pomodoroCount}
-                onClick={handleAddPomodoro}
-                onMouseDown={preventHandleMouseDown}
-                type='button'
-              >
-                {pomodoroCount}
-              </button>
-            )}
+            <button
+              className={styles.pomodoroCount}
+              onClick={handleAddPomodoro}
+              onMouseDown={preventHandleMouseDown}
+              type='button'
+            >
+              {pomodoroCount}
+            </button>
             <TextField
               className={styles.title}
               fieldClassName={classNames(styles.input, { [styles.inputEdit]: isEdit })}

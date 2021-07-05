@@ -4,8 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { useSelector } from 'react-redux';
-import { RootState } from 'core/entities/store';
-import { Todo } from 'core/entities/todo';
+import { RootState, TodosState } from 'core/entities/store';
 
 import { TodoForm } from 'components/Todos/TodoForm';
 import { TodoListContainer } from 'components/Todos/TodoListContainer';
@@ -15,12 +14,17 @@ interface TodosProps {
 }
 
 export function Todos({ className }: TodosProps) {
-  const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.current);
+  const todos = useSelector<RootState, TodosState>((state) => state.todos);
+
   return (
     <section className={classNames(styles.root, className)}>
       <TodoForm />
       <TodoListContainer />
-      {todosList.length > 0 && <span className={styles.totalTime}>25 мин</span>}
+      {todos.current.length > 0 && <span className={styles.totalTime}>25 мин</span>}
+
+      <div className={styles.completedTodos}>
+        <TodoListContainer />
+      </div>
     </section>
   );
 }

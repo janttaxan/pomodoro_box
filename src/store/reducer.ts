@@ -27,6 +27,7 @@ import { SET_POMODORO_COUNT } from 'store/timer/actions/setPomodoroCount';
 import { SET_BREAK_COUNT } from 'store/timer/actions/setBreakCount';
 import { ADD_TODO_COMPLETED_POMODORO } from 'store/todos/actions/addTodoCompletedPomodoro';
 import { MOVE_TODO_TO_COMPLETED } from 'store/todos/actions/moveTodoToCompleted';
+import { REORDER_COMPLETED_TODOS } from 'store/todos/actions/reorderCompletedTodos';
 
 export const rootReducer: Reducer<RootState, Actions> = (state = initialState, action) => {
   switch (action.type) {
@@ -39,6 +40,7 @@ export const rootReducer: Reducer<RootState, Actions> = (state = initialState, a
     case SAVE_TODO_TITLE:
     case MOVE_TODO_TO_COMPLETED:
     case REORDER_TODOS:
+    case REORDER_COMPLETED_TODOS:
       return {
         ...state,
         todos: todosReducer(state.todos, action)

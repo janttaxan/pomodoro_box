@@ -12,6 +12,7 @@ import { SAVE_TODO_TITLE } from 'store/todos/actions/saveTodoTitle';
 import { REORDER_TODOS } from 'store/todos/actions/reorderTodos';
 import { ADD_TODO_COMPLETED_POMODORO } from 'store/todos/actions/addTodoCompletedPomodoro';
 import { MOVE_TODO_TO_COMPLETED } from 'store/todos/actions/moveTodoToCompleted';
+import { REORDER_COMPLETED_TODOS } from 'store/todos/actions/reorderCompletedTodos';
 
 export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialState.todos, action) => {
   switch (action.type) {
@@ -112,6 +113,12 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
         ...state,
         // TODO: подумать как сделать без мутации массива
         current: action.payload
+      };
+    case REORDER_COMPLETED_TODOS:
+      return {
+        ...state,
+        // TODO: подумать как сделать без мутации массива
+        completed: action.payload
       };
     default:
       return state;

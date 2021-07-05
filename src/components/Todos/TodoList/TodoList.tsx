@@ -31,7 +31,6 @@ export function TodoList(props: TodoListProps) {
             index={index}
             pomodoroCount={todo.counters.pomodoro.current}
             title={todo.title}
-            isDone={todo.isDone}
             onSaveTitle={onSaveTodoTitle}
             onAddPomodoro={onAddTodoPomodoro}
             onRemovePomodoro={onRemoveTodoPomodoro}
