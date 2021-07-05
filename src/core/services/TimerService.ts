@@ -16,7 +16,7 @@ import { removeTodoPomodoro } from 'store/todos/actions/removeTodoPomodoro';
 import { addTodoCompletedPomodoro } from 'store/todos/actions/addTodoCompletedPomodoro';
 
 export class TimerService {
-  private intervalTime = 10;
+  private intervalTime = 100;
   private timer: Optional<NodeJS.Timeout> = null;
 
   public start = (): MainThunkAction => (dispatch, getState) => {
@@ -37,9 +37,7 @@ export class TimerService {
   };
 
   public pause = (): MainThunkAction => (dispatch, getState) => {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+    this.clearTimer();
 
     if (getState().timer.status === 'work') {
       dispatch(setStatus('pauseWork'));
@@ -51,30 +49,33 @@ export class TimerService {
   };
 
   public skipBreak = (): MainThunkAction => (dispatch, getState) => {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+    this.clearTimer();
     // добавили +1 к счетчику перерывов и инициализируем помидор
     dispatch(setBreakCount(getState().timer.daylyCounters.break + 1));
     dispatch(this.initWork());
   };
 
   public skipWork = (): MainThunkAction => (dispatch, getState) => {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
-    // добавили +1 к счетчику помидоров и инициализируем перерыв
+    this.clearTimer();
+    // добавили +1 к счетчику помидоров таймера
     dispatch(setPomodoroCount(getState().timer.daylyCounters.pomodoro + 1));
+    // завершили помидор текущей задачи (или всю задачу, если помидор последний)
+    dispatch(this.completeTodoPomodoro());
+    // инициализируем перерыв
     dispatch(this.initBreak());
   };
 
   public stop = (): MainThunkAction => (dispatch, getState) => {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+    this.clearTimer();
 
     dispatch(setStatus('default'));
     dispatch(initTimerTime(getState().settings.pomodoroTime, 0));
+  };
+
+  public clearTimer = () => {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   };
 
   private decreaseTimerTime = (currentMinute: number, currentSecond: number, dispatch: MainThunkDispatch) => {
@@ -134,31 +135,35 @@ export class TimerService {
     }
   };
 
-  // private completeTodoPomodoro = (): MainThunkAction => (dispatch, getState) => {
-  //   const currentTodo = getState().todos.current.find((todo) => todo.id === getState().timer.todo.id);
-  //
-  //   if (!currentTodo) {
-  //     return null;
-  //   }
-  //
-  //   dispatch(removeTodoPomodoro(currentTodo.id));
-  //   dispatch(addTodoCompletedPomodoro(currentTodo.id));
-  //
-  //   if (currentTodo.counters.pomodoro.current <= 1) {
-  //     dispatch(moveTodoToCompleted(currentTodo));
-  //   }
-  // };
+  private completeTodoPomodoro = (): MainThunkAction => (dispatch, getState) => {
+    const getCurrentTodo = () => getState().todos.current.find((todo) => todo.id === getState().timer.todo.id);
+
+    const todo = getCurrentTodo();
+
+    if (!todo) {
+      return null;
+    }
+
+    dispatch(removeTodoPomodoro(todo.id));
+    dispatch(addTodoCompletedPomodoro(todo.id));
+
+    if (todo.counters.pomodoro.current === 1) {
+      dispatch(moveTodoToCompleted(getCurrentTodo()));
+    }
+  };
 
   private setNextTimer = (): MainThunkAction => (dispatch, getState) => {
     // если последний таймер был "помидор"
     if (getState().timer.status === 'work') {
-      // добавили +1 к счетчику помидоров и инициализируем перерыв
+      // добавили +1 к счетчику помидоров таймера
       dispatch(setPomodoroCount(getState().timer.daylyCounters.pomodoro + 1));
+      // завершили помидор текущей задачи (или всю задачу, если помидор последний)
+      dispatch(this.completeTodoPomodoro());
+      // инициализируем перерыв
       dispatch(this.initBreak());
-    }
 
-    // если последний таймер был "перерыв"
-    if (getState().timer.status === 'break') {
+      // если последний таймер был "перерыв"
+    } else if (getState().timer.status === 'break') {
       // добавили +1 к счетчику перерывов и инициализируем помидор
       dispatch(setBreakCount(getState().timer.daylyCounters.break + 1));
       dispatch(this.initWork());

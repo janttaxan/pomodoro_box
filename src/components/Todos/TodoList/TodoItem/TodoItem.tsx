@@ -106,12 +106,7 @@ export function TodoItem(props: TodoItemProps) {
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
-        <li
-          className={itemClasses}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
+        <li className={itemClasses} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <form className={classNames(styles.task, { [styles.taskEdit]: isEdit })} onSubmit={handleSaveTitle}>
             {!isDone && (
               <button

@@ -1,8 +1,3 @@
-// TODO: почистить исключения
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-
 import { Reducer } from 'redux';
 import { TodosState } from 'core/entities/store';
 import { TodosActions } from 'store/todos/actions';
@@ -79,7 +74,7 @@ export const todosReducer: Reducer<TodosState, TodosActions> = (state = initialS
                 ...todo.counters,
                 pomodoro: {
                   ...todo.counters.pomodoro,
-                  complited: todo.counters.pomodoro.current + 1
+                  complited: todo.counters.pomodoro.complited + 1
                 }
               }
             };

@@ -17,7 +17,7 @@ export function TimerHeader({ todoTitle, pomodoroCount, breakCount, status }: Ti
     <div className={headerClasses}>
       <div className={styles.left}>
         {status === 'noTask' ? (
-          <h4 className={styles.title}>Нет задачи</h4>
+          <h4 className={styles.title}>Список задач пуст</h4>
         ) : (
           <h4 className={styles.title}>{todoTitle}</h4>
         )}
