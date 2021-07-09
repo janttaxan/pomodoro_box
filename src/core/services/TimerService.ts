@@ -13,7 +13,7 @@ import { setPomodoroCount } from 'store/timer/actions/setPomodoroCount';
 import { setBreakCount } from 'store/timer/actions/setBreakCount';
 import { moveTodoToCompleted } from 'store/todos/actions/moveTodoToCompleted';
 import { removeTodoPomodoro } from 'store/todos/actions/removeTodoPomodoro';
-import { addTodoCompletedPomodoro } from 'store/todos/actions/addTodoCompletedPomodoro';
+import { deleteTodo } from 'store/todos/actions/deleteTodo';
 
 export class TimerService {
   private intervalTime = 100;
@@ -60,7 +60,7 @@ export class TimerService {
     // добавили +1 к счетчику помидоров таймера
     dispatch(setPomodoroCount(getState().timer.daylyCounters.pomodoro + 1));
     // завершили помидор текущей задачи (или всю задачу, если помидор последний)
-    dispatch(this.completeTodoPomodoro());
+    dispatch(this.completePomodoro());
     // инициализируем перерыв
     dispatch(this.initBreak());
   };
@@ -135,7 +135,7 @@ export class TimerService {
     }
   };
 
-  private completeTodoPomodoro = (): MainThunkAction => (dispatch, getState) => {
+  private completePomodoro = (): MainThunkAction => (dispatch, getState) => {
     const getCurrentTodo = () => getState().todos.current.find((todo) => todo.id === getState().timer.todo.id);
 
     const todo = getCurrentTodo();
@@ -145,10 +145,11 @@ export class TimerService {
     }
 
     dispatch(removeTodoPomodoro(todo.id));
-    dispatch(addTodoCompletedPomodoro(todo.id));
+    dispatch(moveTodoToCompleted(getCurrentTodo()));
 
-    if (todo.counters.pomodoro.current === 1) {
-      dispatch(moveTodoToCompleted(getCurrentTodo()));
+    // удаляем задачу из текущих, если оставался 1 помидор до убавления
+    if (todo.pomodoros === 1) {
+      dispatch(deleteTodo(todo.id));
     }
   };
 
@@ -158,7 +159,7 @@ export class TimerService {
       // добавили +1 к счетчику помидоров таймера
       dispatch(setPomodoroCount(getState().timer.daylyCounters.pomodoro + 1));
       // завершили помидор текущей задачи (или всю задачу, если помидор последний)
-      dispatch(this.completeTodoPomodoro());
+      dispatch(this.completePomodoro());
       // инициализируем перерыв
       dispatch(this.initBreak());
 

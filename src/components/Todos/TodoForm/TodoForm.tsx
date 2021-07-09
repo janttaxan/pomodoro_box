@@ -32,13 +32,7 @@ export function TodoForm() {
     const todo: Todo = {
       title: inputValue.trim(),
       id: generateRandomString(),
-      counters: {
-        pomodoro: {
-          current: 1,
-          complited: 0
-        }
-      },
-      isDone: false,
+      pomodoros: 1,
       date: {
         created: Date.now()
       }

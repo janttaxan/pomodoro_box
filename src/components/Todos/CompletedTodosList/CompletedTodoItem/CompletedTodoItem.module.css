@@ -1,0 +1,12 @@
+.root {
+  position: relative;
+  display: flex;
+  font-weight: 300;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid var(--grayE4);
+  border-bottom: 1px solid var(--grayE4);
+  background-color: rgb(var(--white));
+}

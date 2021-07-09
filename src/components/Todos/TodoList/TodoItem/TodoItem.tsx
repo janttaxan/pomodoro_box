@@ -7,10 +7,11 @@ import classNames from 'classnames';
 import { Draggable } from 'react-beautiful-dnd';
 import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
 
-import { IconDots, IconSave } from 'components/common/Icons';
-import { Dropdown, useDropdown } from 'components/common/Dropdown';
-import { TodoActions } from 'components/Todos/TodoList/TodoItem/TodoActions';
+import { IconAdd, IconDelete, IconEdit, IconRemove, IconSave } from 'components/common/Icons';
+
 import { TextField } from 'components/common/TextField';
+import { TodoAction } from 'components/Todos/TodoActions/TodoAction';
+import { TodoActions } from 'components/Todos/TodoActions';
 
 export interface TodoItemProps {
   className?: string;
@@ -43,9 +44,6 @@ export function TodoItem(props: TodoItemProps) {
   const [isEdit, toggleIsEdit] = useState(false);
   const [errorValue, setErrorValue] = useState('');
 
-  const dropdownRef = useRef(null);
-  const { onOpen, onClose, opened } = useDropdown(dropdownRef);
-
   const inputRef = useRef<HTMLInputElement>(null);
   const focusInput = () => {
     setTimeout(() => {
@@ -69,12 +67,10 @@ export function TodoItem(props: TodoItemProps) {
     }
     toggleIsEdit(true);
     focusInput();
-    onClose();
   }, []);
 
   const handleDeleteTask = useCallback(() => {
     onDeleteTodo(id);
-    onClose();
   }, []);
 
   const handleChangeTitle = useCallback(
@@ -131,21 +127,30 @@ export function TodoItem(props: TodoItemProps) {
             )}
           </form>
           {!isEdit && (
-            <div className={styles.actions}>
-              <button className={styles.actionsBtn} onClick={onOpen}>
-                <IconDots />
-              </button>
-              <Dropdown className={styles.dropdown} opened={opened} ref={dropdownRef}>
-                <TodoActions
-                  removePomodoroIsDisabled={pomodoroCount <= 1}
-                  editTaskIsDisabled={isEdit}
-                  onAddPomodoro={handleAddPomodoro}
-                  onRemovePomodoro={handleRemovePomodoro}
-                  onEditTodo={handleEditTask}
-                  onDeleteTodo={handleDeleteTask}
-                />
-              </Dropdown>
-            </div>
+            <TodoActions>
+              <TodoAction
+                icon={<IconAdd />}
+                text='Увеличить'
+                onClick={handleAddPomodoro}
+              />
+              <TodoAction
+                icon={<IconRemove />}
+                text='Уменьшить'
+                onClick={handleRemovePomodoro}
+                disabled={pomodoroCount <= 1}
+              />
+              <TodoAction
+                icon={<IconEdit />}
+                text='Редактировать'
+                onClick={handleEditTask}
+                disabled={isEdit}
+              />
+              <TodoAction
+                icon={<IconDelete />}
+                text='Удалить'
+                onClick={handleDeleteTask}
+              />
+            </TodoActions>
           )}
         </li>
       )}

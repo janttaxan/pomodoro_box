@@ -1,0 +1,39 @@
+.root {
+  position: relative;
+}
+
+.actionsBtn {
+  position: relative;
+  flex: 0 0 auto;
+  height: 34px;
+  background-color: transparent;
+  z-index: 5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 40px;
+  border: none;
+  outline: none;
+  transition: color var(--transition),
+  background-color var(--transition),
+  box-shadow var(--transition);
+}
+
+.actionsBtn:hover {
+  background-color: var(--grayF4);
+}
+
+.actionsBtn:active {
+  background-color: var(--grayE4);
+}
+
+.actionsBtn:focus {
+  box-shadow: var(--focus);
+}
+
+.actionsList {
+  display: flex;
+  flex-direction: column;
+}

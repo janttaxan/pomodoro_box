@@ -29,7 +29,7 @@ export function TodoList(props: TodoListProps) {
             key={todo.id}
             id={todo.id}
             index={index}
-            pomodoroCount={todo.counters.pomodoro.current}
+            pomodoroCount={todo.pomodoros}
             title={todo.title}
             onSaveTitle={onSaveTodoTitle}
             onAddPomodoro={onAddTodoPomodoro}

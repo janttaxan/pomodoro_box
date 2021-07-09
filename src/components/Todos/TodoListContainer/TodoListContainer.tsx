@@ -2,8 +2,7 @@
 /* eslint-disable @typescript-eslint/unbound-method*/
 import React, { useCallback } from 'react';
 
-import { RootState } from 'core/entities/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { TodoList } from 'components/Todos/TodoList';
 import { Todo } from 'core/entities/todo';
@@ -22,10 +21,12 @@ const reorder = (list: Array<Todo>, startIndex: number, endIndex: number) => {
   return result;
 };
 
-export function TodoListContainer() {
-  const dispatch = useDispatch();
+interface TodoListContainerProps {
+  todos: Array<Todo>
+}
 
-  const todosList = useSelector<RootState, Array<Todo>>((state) => state.todos.current);
+export function TodoListContainer({ todos }: TodoListContainerProps) {
+  const dispatch = useDispatch();
 
   function onDragEnd(result: DropResult) {
     if (!result.destination) {
@@ -36,16 +37,16 @@ export function TodoListContainer() {
       return;
     }
 
-    const todos = reorder(todosList, result.source.index, result.destination.index);
+    const reorderedTodos = reorder(todos, result.source.index, result.destination.index);
 
-    dispatch(reorderTodos(todos));
+    dispatch(reorderTodos(reorderedTodos));
   }
 
   const handleSaveTodoTitle = useCallback(
     (id: string, newTitleValue: string) => {
       dispatch(saveTodoTitle(id, newTitleValue));
     },
-    [todosList]
+    [todos]
   );
 
   const handleAddTodoPomodoro = useCallback((id: string) => {
@@ -66,7 +67,7 @@ export function TodoListContainer() {
         {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
             <TodoList
-              todos={todosList}
+              todos={todos}
               onSaveTodoTitle={handleSaveTodoTitle}
               onAddTodoPomodoro={handleAddTodoPomodoro}
               onRemoveTodoPomodoro={handleRemoveTodoPomodoro}

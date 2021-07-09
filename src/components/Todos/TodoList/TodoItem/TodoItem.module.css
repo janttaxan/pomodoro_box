@@ -11,10 +11,6 @@
   background-color: rgb(var(--white));
 }
 
-.root.isDone {
-  background-color: rgb(var(--brand));
-}
-
 .root:not(.itemEdit)::before {
   content: "";
   position: absolute;
@@ -87,8 +83,7 @@
   position: relative;
 }
 
-.saveBtn,
-.actionsBtn {
+.saveBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,33 +109,16 @@
   fill: rgb(var(--white));
 }
 
-.actionsBtn {
-  position: relative;
-  flex: 0 0 auto;
-  height: 34px;
-  background-color: transparent;
-  z-index: 5;
-}
-
 .saveBtn:hover {
   background-color: rgb(var(--accent-hover));
 }
 
-.actionsBtn:hover {
-  background-color: var(--grayF4);
-}
-
 .pomodoroCount:focus,
 .saveBtn:active,
-.saveBtn:focus,
-.actionsBtn:focus {
+.saveBtn:focus {
   box-shadow: var(--focus);
 }
 
 .saveBtn:active {
   background-color: rgba(var(--accent-hover), 0.8);
-}
-
-.actionsBtn:active {
-  background-color: var(--grayE4);
 }

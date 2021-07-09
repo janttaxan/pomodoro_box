@@ -5,3 +5,14 @@
   color: var(--gray99);
   margin: 12px 0 0;
 }
+
+.completedTodos {
+  margin: 24px 0 0;
+  padding: 4px 0 0;
+  border-top: 1px solid var(--gray99);
+}
+
+.completedTitle {
+  display: inline-block;
+  margin: 0 0 8px;
+}
