@@ -6,7 +6,7 @@ import styles from './TodoList.module.css';
 import React from 'react';
 import { Todo } from 'core/entities/todo';
 
-import { TodoItem } from 'components/Todos/TodoList/TodoItem';
+import { TodoItem } from 'components/Todos/TodoItem';
 
 interface TodoListProps {
   todos: Array<Todo>;

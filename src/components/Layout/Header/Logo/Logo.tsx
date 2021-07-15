@@ -1,7 +1,7 @@
 import styles from './Logo.module.css';
 
 import React from 'react';
-import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+import { preventHandleMouseDown } from 'core/utils/preventHandleMouseDown';
 
 import { IconLogo } from 'components/common/Icons';
 

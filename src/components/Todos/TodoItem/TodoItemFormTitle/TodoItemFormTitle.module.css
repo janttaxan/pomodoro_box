@@ -1,27 +1,3 @@
-.root {
-  position: relative;
-  display: flex;
-  font-weight: 300;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 0;
-  border-top: 1px solid var(--grayE4);
-  border-bottom: 1px solid var(--grayE4);
-  background-color: rgb(var(--white));
-}
-
-.root:not(.itemEdit)::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  transition: background-color var(--transition);
-}
-
 .task {
   position: relative;
   display: flex;
@@ -79,30 +55,27 @@
   padding-right: 56px;
 }
 
-.actions {
-  position: relative;
-}
-
-.saveBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  width: 40px;
-  border: none;
-  outline: none;
-  transition: color var(--transition),
-  background-color var(--transition),
-  box-shadow var(--transition);
-}
-
 .saveBtn {
   position: absolute;
   top: 1px;
   right: 1px;
-  background-color: rgb(var(--accent));
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  width: 40px;
   height: 32px;
+  border: none;
+  outline: none;
   z-index: 1;
+
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    box-shadow var(--transition);
+    background-color: rgb(var(--accent));
 }
 
 .saveBtn svg path {

@@ -2,7 +2,7 @@ import styles from './Header.module.css';
 
 import React from 'react';
 import classNames from 'classnames';
-import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+import { preventHandleMouseDown } from 'core/utils/preventHandleMouseDown';
 
 import { Logo } from 'components/Layout/Header/Logo/Logo';
 import { IconEqualizer } from 'components/common/Icons';

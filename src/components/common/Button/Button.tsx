@@ -2,7 +2,7 @@ import styles from './Button.module.css';
 
 import React from 'react';
 import classNames from 'classnames';
-import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+import { preventHandleMouseDown } from 'core/utils/preventHandleMouseDown';
 
 type Variant = 'contained' | 'outlined';
 type Color = 'green' | 'red';

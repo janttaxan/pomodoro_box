@@ -2,7 +2,7 @@ import styles from './TodoForm.module.css';
 
 import React, { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { generateRandomString } from 'utils/generateRandomString';
+import { generateRandomString } from 'core/utils/generateRandomString';
 
 import { Todo } from 'core/entities/todo';
 import { addTodo } from 'store/todos/actions/addTodo';

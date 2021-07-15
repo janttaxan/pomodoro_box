@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { useSelector } from 'react-redux';
 import { RootState, SettingsState, TodosState } from 'core/entities/store';
-import { timeConvert } from 'utils/timeConvert';
+import { timeConvert } from 'core/utils/timeConvert';
 
 import { TodoForm } from 'components/Todos/TodoForm';
 import { TodoListContainer } from 'components/Todos/TodoListContainer';

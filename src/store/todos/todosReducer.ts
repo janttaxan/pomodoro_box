@@ -5,7 +5,7 @@ import { Reducer } from 'redux';
 import { TodosState } from 'core/entities/store';
 import { TodosActions } from 'store/todos/actions';
 
-import { generateRandomString } from 'utils/generateRandomString';
+import { generateRandomString } from 'core/utils/generateRandomString';
 
 import { initialState } from 'store/store';
 

@@ -2,7 +2,7 @@ import styles from './TodoAction.module.css';
 
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+import { preventHandleMouseDown } from 'core/utils/preventHandleMouseDown';
 
 interface TodoActionProps {
   icon?: ReactNode;

@@ -10,3 +10,18 @@
   border-bottom: 1px solid var(--grayE4);
   background-color: rgb(var(--white));
 }
+
+.root:not(.itemEdit)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition: background-color var(--transition);
+}
+
+.actions {
+  position: relative;
+}

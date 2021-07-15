@@ -2,7 +2,7 @@ import styles from './TimerTime.module.css';
 
 import React from 'react';
 import classNames from 'classnames';
-import { preventHandleMouseDown } from 'utils/preventHandleMouseDown';
+import { preventHandleMouseDown } from 'core/utils/preventHandleMouseDown';
 import { TimerStatus } from 'core/entities/store';
 
 import { IconPlus } from 'components/common/Icons';
