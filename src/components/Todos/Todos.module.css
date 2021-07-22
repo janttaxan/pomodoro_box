@@ -1,18 +1,22 @@
-.root {}
+.root {
+}
 
-.totalTime {
-  display: inline-block;
+.stickyInfo,
+.inlineInfo {
   color: var(--gray99);
-  margin: 12px 0 0;
 }
 
-.completedTodos {
-  margin: 24px 0 0;
-  padding: 4px 0 0;
-  border-top: 1px solid var(--gray99);
+.stickyInfo {
+  position: sticky;
+  bottom: 0;
+  display: block;
+  padding: 8px;
+  margin: 1px 0 0;
+  background-color: var(--grayF4);
+  z-index: 5;
 }
 
-.completedTitle {
+.inlineInfo {
   display: inline-block;
-  margin: 0 0 8px;
+  margin: 12px 0 0;
 }

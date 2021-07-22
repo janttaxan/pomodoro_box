@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titles {
+  display: flex;
+  background-color: var(--grayF4);
+}
+
+.content {
+}
