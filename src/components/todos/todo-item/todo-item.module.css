@@ -1,0 +1,29 @@
+@import "styles/variables.css";
+
+.root {
+  position: relative;
+  display: flex;
+  font-weight: 300;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid $color-grayE4;
+  border-bottom: 1px solid $color-grayE4;
+  background-color: rgb($color-white);
+}
+
+.root:not(.itemEdit)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  transition: background-color $transition;
+}
+
+.actions {
+  position: relative;
+}

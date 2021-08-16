@@ -1,0 +1,57 @@
+@import "styles/variables.css";
+
+.root {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  color: rgba($color-black, 0.74);
+  transition:
+    color $transition,
+    background-color $transition,
+    border-color $transition
+}
+
+.root:hover {
+  background-color: $color-grayE4;
+}
+
+.root:active {
+  background-color: $color-grayC4;
+}
+
+.root.active {
+  color: rgba($color-black, 1);
+  border-color: rgb($color-accent);
+}
+
+.root.disabled {
+  opacity: 0.5;
+}
+
+.root.disabled:hover {
+  background-color: transparent;
+}
+
+.root.disabled .btn {
+  cursor: default;
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.btn:focus {
+  box-shadow: $focus;
+  z-index: 1;
+}

@@ -1,0 +1,19 @@
+@import "styles/variables.css";
+
+.root {
+  display: none;
+  background-color: rgb($color-white);
+  border: 1px solid $color-grayC4;
+  z-index: -1;
+}
+
+.opened {
+  display: block;
+  min-width: 164px;
+
+  position: absolute;
+  top: 40px;
+  right: 0;
+
+  z-index: 10;
+}

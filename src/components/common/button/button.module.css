@@ -1,0 +1,97 @@
+@import "styles/variables.css";
+
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  padding: 18px 50px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  outline: none;
+  transition:
+    color $transition,
+    background-color $transition,
+    border-color $transition,
+    box-shadow $transition;
+}
+
+.root:active,
+.root:focus {
+  box-shadow: $focus;
+}
+
+.block {
+  width: 100%;
+}
+
+.contained.green {
+  background-color: rgb($color-accent);
+  color: rgb($color-white);
+}
+
+.contained.red {
+  background-color: rgb($color-brand);
+  color: rgb($color-white);
+}
+
+.outlined {
+  background: transparent;
+}
+
+.outlined.green {
+  border-color: rgb($color-accent);
+}
+
+.outlined.red {
+  border-color: rgb($color-brand);
+  color: rgb($color-brand);
+}
+
+.green:hover {
+  background-color: rgb($color-accent-hover);
+  border-color: rgb($color-accent-hover);
+  color: rgb($color-white);
+}
+
+.red:hover {
+  background-color: rgb($color-brand-hover);
+  border-color: rgb($color-brand-hover);
+}
+
+.outlined.red:hover {
+  background-color: rgb($color-brand);
+  border-color: rgb($color-brand);
+  color: rgb($color-white);
+}
+
+.green:active {
+  background-color: rgba($color-accent-hover, 0.8);
+}
+
+.red:active {
+  background-color: rgba($color-brand-hover, 0.8);
+}
+
+.outlined.red:active {
+  background-color: rgba($color-brand, 0.8);
+}
+
+.disabled,
+.disabled:hover {
+  cursor: default;
+}
+
+.disabled.contained,
+.disabled.contained:hover {
+  background-color: $color-grayC4;
+  border-color: $color-grayC4;
+}
+
+.disabled.outlined,
+.disabled.outlined:hover {
+  background-color: transparent;
+  border-color: $color-grayC4;
+  color: $color-grayC4;
+}

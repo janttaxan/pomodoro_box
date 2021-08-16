@@ -1,0 +1,33 @@
+@import "styles/variables.css";
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  color: rgb($color-white);
+  transition: background-color $transition;
+}
+
+.root.noTask     { background-color: $color-grayC4;      }
+.root.default    { background-color: $color-grayC4;      }
+.root.work       { background-color: rgb($color-brand);  }
+.root.break      { background-color: rgb($color-accent); }
+.root.pauseWork  { background-color: rgb($color-brand);  }
+.root.pauseBreak { background-color: rgb($color-accent); }
+
+.left {
+}
+
+.title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.right {
+}
+
+.count {
+}

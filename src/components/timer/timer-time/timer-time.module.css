@@ -1,0 +1,125 @@
+@import "styles/variables.css";
+
+.root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.root.noTask     { color: $color-gray99;      }
+.root.default    { color: rgb($color-black);  }
+.root.work       { color: rgb($color-brand);  }
+.root.break      { color: rgb($color-accent); }
+.root.pauseWork  { color: rgb($color-black);  }
+.root.pauseBreak { color: rgb($color-black);  }
+
+.root.noTask .timeSeparate::before,
+.root.noTask .timeSeparate::after {
+  background-color: $color-gray99;
+}
+
+.root.default .timeSeparate::before,
+.root.default .timeSeparate::after {
+  background-color: rgb($color-black);
+}
+
+.root.work .timeSeparate::before,
+.root.work .timeSeparate::after {
+  background-color:rgb($color-brand);
+}
+
+.root.break .timeSeparate::before,
+.root.break .timeSeparate::after {
+  background-color: rgb($color-accent);
+}
+
+.root.pauseWork .timeSeparate::before,
+.root.pauseWork .timeSeparate::after {
+  background-color: rgb($color-black);
+}
+
+.root.pauseBreak .timeSeparate::before,
+.root.pauseBreak .timeSeparate::after {
+  background-color: rgb($color-black);
+}
+
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  display: flex;
+
+  font-size: 150px;
+  line-height: 130px;
+  font-weight: 200;
+  width: 100%;
+  user-select: none;
+}
+
+.timeNum {
+  width: 250px;
+  transition: color $transition;
+}
+
+.timeNum:first-child {
+  text-align: right;
+}
+
+.timeSeparate {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 24px;
+}
+
+.timeSeparate::before,
+.timeSeparate::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: background-color $transition;
+}
+
+.timeSeparate::before {
+  top: 38px;
+}
+
+.timeSeparate::after {
+  bottom: 28px;
+}
+
+.addBtn {
+  position: absolute;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+  background-color: $color-grayC4;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+
+  transition: background-color $transition, box-shadow $transition;
+}
+
+.addBtn:hover {
+  background-color: rgb($color-accent-hover);
+}
+
+.addBtn:active {
+  background-color: rgba($color-accent-hover, 0.8);
+}
+
+.addBtn:focus {
+  box-shadow: $focus;
+}

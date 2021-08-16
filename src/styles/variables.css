@@ -1,0 +1,20 @@
+$color-brand: 220, 62, 34;
+$color-brand-hover: 183, 40, 15;
+$color-accent: 168, 182, 79;
+$color-accent-hover: 137, 148, 65;
+$color-black: 51, 51, 51;
+$color-white: 255, 255, 255;
+$color-error: 243, 69, 60;
+$color-warning: 254, 153, 42;
+$color-success: 78, 175, 88;
+
+$color-gray99: #999;
+$color-grayC4: #C4C4C4;
+$color-grayE4: #E4E4E4;
+$color-grayF4: #F4F4F4;
+
+$focus: 0 0 0 0.1em rgba(2, 116, 219, 0.8);
+$focus-err: 0 0 0 0.1em rgba(var(--error), 0.8);
+
+$easing: cubic-bezier(0.4, 0, 0.2, 1);
+$transition: 250ms var(--easing) 0ms;

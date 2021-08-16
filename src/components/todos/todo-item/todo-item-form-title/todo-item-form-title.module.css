@@ -1,0 +1,100 @@
+@import "styles/variables.css";
+
+.task {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.task:not(.taskEdit)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%, #FFFFFF 100%);
+}
+
+.pomodoroCount {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px 5px 0 0;
+  height: 25px;
+  min-width: 25px;
+  padding: 0 6px;
+  border: 1px solid $color-grayC4;
+  border-radius: 16px;
+  outline: none;
+  background-color: transparent;
+  z-index: 5;
+  transition:
+    color $transition,
+    background-color $transition,
+    box-shadow $transition;
+}
+
+.pomodoroCount:hover {
+  background-color: $color-grayF4;
+}
+
+.pomodoroCount:active {
+  background-color: $color-grayE4;
+}
+
+.title {
+  width: 100%;
+}
+
+.input:not(.inputEdit) {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.input.inputEdit {
+  padding-right: 56px;
+}
+
+.saveBtn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  width: 40px;
+  height: 32px;
+  border: none;
+  outline: none;
+  z-index: 1;
+
+  transition:
+    color $transition,
+    background-color $transition,
+    box-shadow $transition;
+  background-color: rgb($color-accent);
+}
+
+.saveBtn svg path {
+  fill: rgb($color-white);
+}
+
+.saveBtn:hover {
+  background-color: rgb($color-accent-hover);
+}
+
+.pomodoroCount:focus,
+.saveBtn:active,
+.saveBtn:focus {
+  box-shadow: $focus;
+}
+
+.saveBtn:active {
+  background-color: rgba($color-accent-hover, 0.8);
+}

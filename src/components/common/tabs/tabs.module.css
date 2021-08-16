@@ -1,0 +1,15 @@
+@import "styles/variables.css";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titles {
+  display: flex;
+  background-color: $color-grayF4;
+}
+
+.content {
+}

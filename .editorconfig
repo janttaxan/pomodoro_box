@@ -14,11 +14,15 @@ indent_style = space
 indent_size = 2
 
 [*.js]
-indent_style = tab
+indent_style = space
 tab_width = 2
 
 [*.html]
-indent_style = tab
+indent_style = space
+tab_width = 2
+
+[*.svg]
+indent_style = space
 tab_width = 2
 
 [*.ts]

@@ -1,0 +1,59 @@
+@import "styles/variables.css";
+
+.root {
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 6px 14px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transition:
+    background-color $transition,
+    box-shadow $transition;
+}
+
+.btn:active,
+.btn:focus {
+  box-shadow: $focus;
+  z-index: 1;
+}
+
+.btn:hover {
+  background-color: $color-grayF4;
+}
+
+.btn:active {
+  background-color: $color-grayE4;
+}
+
+.btn.disabled svg path {
+  fill: $color-grayC4;
+}
+
+.btn.disabled:hover {
+  cursor: default;
+}
+
+.btn.disabled:active,
+.btn.disabled:focus {
+  box-shadow: $focus-err;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.text {
+  color: $color-gray99;
+  white-space: nowrap;
+}
